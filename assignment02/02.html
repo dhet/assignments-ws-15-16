@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Task 2</title>
+</head>
+
+<body>
+	<canvas id="canvas" width="800" height="600" style="border: 1px solid black"></canvas>	
+	<br/>
+	<button onclick="ctx.clearRect(0, 0, canvas.width, canvas.height)">Clear</button>
+	<button onclick="save()">Save</button>
+	<br/>
+	<table>
+		<tr>
+			<td>Color:</td>
+			<td>
+				<input id="colorPicker" type="color" value="color"/>
+				<span id="colorValue"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>Radius:</td>
+			<td>
+				<input id="radiusSlider" type="range" max="50" min="1" value="pencilRadius" onChange="radiusChange(value)"/>
+				<span id="radiusValue"></span>
+			</td>
+		</tr>
+
+	</table>
+
+	<script>
+		"use strict";
+
+		var canvas = document.getElementById("canvas");
+		canvas.style.cursor = "crosshair";
+		var ctx = canvas.getContext("2d");
+		var colorPicker = document.getElementById("colorPicker");
+		var radiusSlider = document.getElementById("radiusSlider");
+
+		var color = "#000000", pencilRadius = 10;
+		colorPicker.value = color;
+		radiusSlider.value = pencilRadius;
+
+		document.getElementById("radiusValue").innerHTML = pencilRadius;
+		document.getElementById("colorValue").innerHTML = color;
+
+		canvas.addEventListener("mousemove", mouseEvent);
+		canvas.addEventListener("mousedown", mouseEvent);
+
+		colorPicker.addEventListener("change", colorChange)
+		radiusSlider.addEventListener("input", radiusChange)
+
+
+		function save(){
+			var image = canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
+			window.location.href = image;
+		}
+
+		function mouseEvent(event){
+			if(event.buttons == 1){ // left mouse button pressed
+				ctx.beginPath();
+				ctx.arc(event.clientX - canvas.offsetLeft, 
+					    event.clientY - canvas.offsetTop, 
+					    pencilRadius, 
+					    0, 
+					    2 * Math.PI);
+				ctx.fill();
+			}
+		}
+
+		function colorChange(event){
+			color = event.target.value;
+			ctx.fillStyle = color;
+			document.getElementById("colorValue").innerHTML = color;
+		}
+
+		function radiusChange(event){
+			if(event.target){
+				pencilRadius = event.target.value;
+				document.getElementById("radiusValue").innerHTML = pencilRadius;
+			}
+			
+		}
+
+
+	</script>
+</body>
+
+</html>
