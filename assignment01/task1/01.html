@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Task 1</title>
+
+</head>
+
+<body>
+	<canvas id="canvas" width="800" height="600" style="border: 1px solid gray"></canvas>	
+
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		ctx.lineWidth = "3"
+
+		drawStar();
+		drawDiamond();
+		drawHeart();
+		drawQuestionMark();
+
+		function drawStar(){
+			ctx.beginPath();
+			ctx.strokeStyle = "yellow";
+			ctx.moveTo(30, 100);
+			ctx.lineTo(60, 10);
+			ctx.lineTo(90, 100);
+			ctx.lineTo(10, 50);
+			ctx.lineTo(120, 50);
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+		function drawDiamond(){
+			ctx.beginPath();
+			ctx.strokeStyle = "purple";
+			ctx.moveTo(200, 100);
+			ctx.lineTo(170, 70);
+			ctx.lineTo(200, 40);
+			ctx.lineTo(230, 70);
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+		function drawHeart(){
+			var start = {x: 400, y: 100};
+			ctx.beginPath();
+			ctx.strokeStyle = "red";
+			ctx.moveTo(start.x, start.y);
+			ctx.bezierCurveTo(310, 30, 350, 20, 400, 50);
+			ctx.bezierCurveTo(420, 20, 500, 30, start.x, start.y);
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+		function drawQuestionMark(){
+			ctx.beginPath();
+			ctx.strokeStyle = "blue";
+			var center1 = {x: 530, y: 70};
+			var radius1 = 25;
+			var radius2 = 40;
+			var center2 = {x: 575, y: 115};
+			ctx.arc(center1.x, center1.y, radius1, Math.PI * 1.1, Math.PI * 0.25);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.arc(center2.x, center2.y, radius2, Math.PI, Math.PI * 1.25);
+			ctx.stroke();
+			ctx.rect(533, 130, 5, 5);
+			ctx.stroke();
+		}
+	</script>
+</body>
+
+</html>
