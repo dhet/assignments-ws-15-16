@@ -3,7 +3,7 @@
 	<title>Codebreaker</title>
 	<style>
 		body {
-			font-family: "Arial";
+			font-family: sans-serif;
 		}
 		.circle {
 			border-radius: 50%;
@@ -11,7 +11,7 @@
 			height: 30px; 
 			line-height: 30px;
 			font-size: 15px;
-			border: 1px solid;
+			border: 1px solid black;
 			margin: 1em;
 			float: left;
 			text-align: center;
@@ -19,7 +19,6 @@
 		.correct {
 			background: red;
 			color: white;
-			border-color: black;
 		}
 		.half-correct {
 			background: black;
