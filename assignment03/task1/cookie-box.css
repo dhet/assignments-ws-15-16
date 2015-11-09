@@ -1,0 +1,31 @@
+#cookieBox{
+	display: none;
+	width: 40%;
+	bottom: 10px;
+	left: 25%;
+	position: fixed;
+	background-color: #0066AA;
+	border-radius: 1em;
+	color: white;
+	padding: 1em;
+	font-family: sans-serif;
+	text-align: center;
+}
+#cookieBox > #close{
+	position: relative;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px; 
+	line-height: 20px;
+	font-size: 13px;
+	float: right;
+	text-align: center;
+	background-color: red;
+	text-decoration: none;
+	color: white;
+}
+#content{
+	position: absolute;
+	width: 30%;
+	left: 30%;
+}
