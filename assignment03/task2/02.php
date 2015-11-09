@@ -45,7 +45,7 @@
 		function isInputValid($arr){
 			global $candidates;
 			foreach($arr as $input){
-				if(strlen($input) != 1 || !in_array($input, $candidates)){
+				if(strlen($input) != 1 || !in_array($input, $candidates) || array_count_values($arr)[$input] > 1){
 					return false;
 				}
 			}
