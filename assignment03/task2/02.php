@@ -52,6 +52,10 @@
 			return true;
 		}
 
+		if(!isset($_SESSION["won"])){
+			$_SESSION["won"] = false;
+		}
+
 		if(!isset($_SESSION["codeWord"])){
 			$_SESSION["codeWord"]  = array();
 			for($i = 0; $i < $codeWordLen; $i++){
@@ -71,10 +75,12 @@
 				strtoupper($_POST["inputThree"]), 
 				strtoupper($_POST["inputFour"]));
 
-			if(isInputValid($latestTry)){
+			if($_SESSION["won"]){
+
+			} elseif(isInputValid($latestTry)){
 				$_SESSION["tries"][count($_SESSION["tries"])] = $latestTry;
 			} else{
-				echo "Invalid Input. Only the single letters 'A', 'B', 'C', 'D', 'E', 'F' and 'G' are allowed.<br/><br/><br/>";
+				echo "Invalid Input. Only the single letters 'A', 'B', 'C', 'D', 'E', 'F' and 'G' are allowed. Furthermore, a letter may only occur once.<br/><br/><br/>";
 			}
 
 			if(count($_SESSION["tries"]) > 0){
@@ -93,7 +99,10 @@
 						}
 						echo "'>" . $try[$i] . "</div>";
 					}
-					echo "<br style='clear:left'/></td><td>" . ($correct == $codeWordLen ? "You won, congrats!" : "") . "</td></tr>";
+					if($correct == $codeWordLen){
+						$_SESSION["won"] = true;
+					}
+					echo "<br style='clear:left'/></td><td>" . ( $correct == $codeWordLen ? "You won, congrats!" : "") . "</td></tr>";
 				}
 				echo "</table>";
 			}
